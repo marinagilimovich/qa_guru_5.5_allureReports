@@ -38,7 +38,8 @@ public class GitHubTests {
 
     @Test
     public void useStepsSearchIssueTest() {
-        step("Переход на github", () -> {
+        step("Переход на github", (step) -> {
+            step.parameter("url", URL);
             open(URL);
         });
 
