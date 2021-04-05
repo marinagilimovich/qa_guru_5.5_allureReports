@@ -3,9 +3,11 @@ package lesson_5_allureReports;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.github.eroshenkoam.allure.WebSteps;
-import io.qameta.allure.Step;
+import io.qameta.allure.*;
 import io.qameta.allure.selenide.AllureSelenide;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.openqa.selenium.By;
 
 import javax.xml.soap.Text;
@@ -62,6 +64,11 @@ public class GitHubTests {
 
 
     @Test
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("aakulikoff")
+    @Feature("Steps")
+    @Story("Annotation")
+    @DisplayName("Тест с аннотацией")
     public void annotationSearchIssueTest() {
         steps.openMainPage();
         steps.searchRepository(Repository);
