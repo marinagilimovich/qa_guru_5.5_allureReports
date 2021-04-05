@@ -15,12 +15,12 @@ public class AnnotationSteps {
         open("https://github.com");
     }
 
-    @Step("Ищем нужный репозиторий")
+    @Step("Ищем нужный репозиторий {repository}")
     public void searchRepository(String repository) {
         $(byName("q")).setValue(repository).pressEnter();
     }
 
-    @Step("Переходим в репозиторий ")
+    @Step("Переходим в репозиторий {repository}")
     public void goToRepository(String repository) {
         $(byLinkText(repository)).click();
     }
@@ -30,13 +30,13 @@ public class AnnotationSteps {
         $(byText("Issues")).click();
     }
 
-    @Step("Проверяем что Issue с номером существует")
+    @Step("Проверяем что Issue с номером {number} существует")
     public void shouldSeeIssueWithNumber(int number) {
         $(withText("#" + number))
                 .should(Condition.exist);
     }
 
-    @Step("Проверяем что Issue имеет соответствующее название")
+    @Step("Проверяем что Issue имеет название {name} ")
     public void shouldSeeIssueWithName(String name) {
         $("#issue_2_link").shouldHave(text(name));
     }
