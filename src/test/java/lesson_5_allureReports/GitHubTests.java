@@ -19,6 +19,12 @@ import static io.qameta.allure.Allure.step;
 
 public class GitHubTests {
 
+    @BeforeEach
+    public void params(){
+        Allure.parameter("repositore", Repository);
+        Allure.parameter("Issue number", Issue_number);
+    }
+
     private AnnotationSteps steps = new AnnotationSteps();
 
     public final String URL = "https://github.com";
@@ -33,7 +39,7 @@ public class GitHubTests {
         $(byName("q")).setValue(Repository).pressEnter();
         $(byLinkText(Repository)).click();
         $(byText("Issues")).click();
-        $(byText("#" + Issue_number)).should(Condition.exist);
+        $(withText("#" + Issue_number)).should(Condition.exist);
         $("#issue_2_link").shouldHave(text(Issue_name));
     }
 
