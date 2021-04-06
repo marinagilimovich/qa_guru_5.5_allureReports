@@ -34,7 +34,10 @@ public class GitHubTests {
 
 
     @Test
+    @DisplayName("Тест на поиск с логером")
     public void selenideSearchIssueTest() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+
         open(URL);
         $(byName("q")).setValue(Repository).pressEnter();
         $(byLinkText(Repository)).click();
@@ -60,10 +63,10 @@ public class GitHubTests {
                     $(byText("Issues")).click());
         });
 
-        step("Проверяем, что Issue с заданным номером и названием существует", () -> {;
+        step("Проверяем, что Issue с заданным номером и названием существует", () -> {
             step("Проверяем что Issue с номером 2 существует", () ->
                     $(withText("#" + Issue_number)).should(Condition.exist));
-            step("Проверяем что Issue с номером 2 называется \'Добавляем зависимости Allure\' ", () ->
+            step("Проверяем что Issue с номером 2 называется 'Добавляем зависимости Allure' ", () ->
                     $("#issue_2_link").shouldHave(text(Issue_name)));
         });
     }
