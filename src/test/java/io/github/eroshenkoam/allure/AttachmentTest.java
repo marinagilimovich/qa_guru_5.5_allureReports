@@ -9,15 +9,13 @@ import java.util.Map;
 
 public class AttachmentTest {
 
-    private Map<String, String> attachments = new HashMap<>();
+    private final Map<String, String> attachments = new HashMap<>();
 
     @Test
     public void testAttachments() {
         testSomething();
         testSomething2();
-        attachments.forEach((name, content) -> {
-            Allure.attachment(name, content);
-        });
+        attachments.forEach(Allure::attachment);
     }
 
     @Step("Step with attachment")
